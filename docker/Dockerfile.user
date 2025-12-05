@@ -12,13 +12,10 @@ RUN npm install
 # Generate Prisma client
 RUN npm run generate-prisma
 
-# Build workspace packages
-RUN npm run build --workspace=@repo/store
-
-# Build the user-app Next.js app (use --workspace flag for consistency)
+# Build the user-app Next.js app directly (it will compile the packages it needs)
 RUN npm run build --workspace=user-app
 
-# Expose the port (optional but recommended)
+# Expose the port
 EXPOSE 3000
 
 # Start the app
