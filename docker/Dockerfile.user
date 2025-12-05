@@ -2,17 +2,20 @@ FROM node:20.12.0-alpine3.19
 
 WORKDIR /usr/src/app
 
+# Copy root package files
 COPY package.json package-lock.json turbo.json tsconfig.json ./
+
+# Copy all workspace packages
 COPY apps ./apps
 COPY packages ./packages
 
-# Install dependencies at root (workspaces)
+# Install dependencies
 RUN npm install
 
-# Generate Prisma client
+# Generate Prisma client (must be before build)
 RUN npm run generate-prisma
 
-# Build the user-app directly
+# Build the user-app
 RUN cd apps/user-app && npm run build
 
 # Expose the port
