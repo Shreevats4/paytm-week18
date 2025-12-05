@@ -3,17 +3,17 @@ FROM node:20.12.0-alpine3.19
 WORKDIR /usr/src/app
 
 COPY package.json package-lock.json turbo.json tsconfig.json ./
-
 COPY apps ./apps
 COPY packages ./packages
 
-# Install dependencies
+# Install dependencies at root (workspaces)
 RUN npm install
 
 # Generate Prisma client
 RUN npm run generate-prisma
 
-# ✅ Build only the user-app workspace (and its deps)
-RUN npm run build -- --filter=user-app...
+#  Build the user-app Next.js app so .next/BUILD_ID exists
+RUN cd apps/user-app && npm run build
 
+#  Start the already-built app (script is in root package.json)
 CMD ["npm", "run", "start-user-app"]
