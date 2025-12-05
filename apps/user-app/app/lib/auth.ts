@@ -1,4 +1,4 @@
-import db from "@repo/db/client";
+import { db } from "@repo/db/client";
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt";
 
@@ -60,6 +60,12 @@ export const authOptions = {
             session.user.id = token.sub
 
             return session
+        },
+        async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
+            // Redirect to dashboard after login
+            if (url.startsWith("/")) return `${baseUrl}${url}`;
+            else if (new URL(url).origin === baseUrl) return url;
+            return `${baseUrl}/dashboard`;
         }
     }
   }

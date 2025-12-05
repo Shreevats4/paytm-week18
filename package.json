@@ -2,11 +2,14 @@
   "name": "week-18",
   "private": true,
   "scripts": {
+    "generate-prisma": "cd packages/db && npx prisma generate && cd ../..",
+    "start-user-app": "cd ./apps/user-app && npm run start",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:generate": "cd packages/db && npx prisma generate && cd ../.."
+},
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",

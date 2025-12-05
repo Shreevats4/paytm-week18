@@ -2,12 +2,17 @@
     "name": "@repo/db",
     "version": "0.0.0",
     "dependencies": {
-        "@prisma/client": "^5.11.0"
+        "@prisma/client": "^5.11.0",
+        "bcrypt": "^6.0.0"
     },
     "devDependencies": {
+        "@types/bcrypt": "^6.0.0",
         "prisma": "5.11.0"
     },
     "exports": {
         "./client": "./index.ts"
+    },
+    "prisma": {
+        "seed": "ts-node prisma/seed.ts"
     }
 }
