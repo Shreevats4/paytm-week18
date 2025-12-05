@@ -13,7 +13,7 @@ RUN npm install
 # Generate Prisma client
 RUN npm run generate-prisma
 
-# Build only the user-app
-RUN npm run build --filter=user-app
+# ✅ Build only the user-app workspace (and its deps)
+RUN npm run build -- --filter=user-app...
 
 CMD ["npm", "run", "start-user-app"]
