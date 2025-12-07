@@ -1,5 +1,3 @@
-# paytm-demo 
-
 # 💸 PayTM Clone - Digital Wallet Application
 
 > A full-stack digital wallet application built with **Turborepo**, **Next.js**, **Express**, **PostgreSQL**, and **Prisma**. Features bank on-ramping via webhooks, P2P transfers, and secure authentication.
